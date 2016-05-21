@@ -1,0 +1,8 @@
+<RCC>
+  <qresource prefix="folderIcon">
+    <file>folder_invoices.png</file>
+  </qresource>
+  <qresource prefix="winIcon">
+    <file>file-movie-clip.png</file>
+  </qresource>
+</RCC>
