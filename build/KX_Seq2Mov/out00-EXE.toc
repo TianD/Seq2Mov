@@ -1,0 +1,9 @@
+('E:\\Scripts\\Eclipse\\Seq2Mov\\build\\KX_Seq2Mov\\KX_Seq2Mov.exe',
+ False,
+ False,
+ 'E:\\Scripts\\Eclipse\\Seq2Mov\\KX_Seq2Mov.ico',
+ None,
+ [],
+ None,
+ False,
+ 1464001273L)
