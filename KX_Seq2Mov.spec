@@ -1,5 +1,6 @@
 # -*- mode: python -*-
-added_files=[('ffmpeg.exe','E:\\Scripts\\Eclipse\\Seq2Mov\\ffmpeg.exe', 'DATA')]
+# -*- coding: utf-8 -*-
+added_files = [('ffmpeg.exe','E:\\Scripts\\Eclipse\\Seq2Mov\\ffmpeg.exe', 'DATA')]
 a = Analysis(['showUI.py'],
              pathex=['E:\\Scripts\\Eclipse\\Seq2Mov'],
              hiddenimports=[],
@@ -8,9 +9,8 @@ a = Analysis(['showUI.py'],
 pyz = PYZ(a.pure)
 exe = EXE(pyz,
           a.scripts,
-          a.datas,
           exclude_binaries=True,
-          name='KX_Seq2Mov.exe',
+          name=u'腾清序列转mov工具.exe',
           debug=False,
           strip=None,
           upx=True,
@@ -21,4 +21,4 @@ coll = COLLECT(exe,
                a.datas+added_files,
                strip=None,
                upx=True,
-               name='KX_Seq2Mov')
+               name=u'腾清序列转mov工具')

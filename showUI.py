@@ -69,7 +69,7 @@ class Seq2MovWnd(QtGui.QMainWindow, Ui_Seq2MovWin):
         self.seqLineEdit.editingFinished.connect(self.loadCmd)
                 
     def pathCmd(self, seqORmov):
-        pathDialog = QtGui.QFileDialog(parent = self)
+        pathDialog = QtGui.QFileDialog(parent = self, directory = "C:\\")
         
         if seqORmov == 'seq':
             pathDialog.setAcceptMode(0)
