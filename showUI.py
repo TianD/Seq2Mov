@@ -69,7 +69,7 @@ class Seq2MovWnd(QtGui.QMainWindow, Ui_Seq2MovWin):
         self.seqLineEdit.editingFinished.connect(self.loadCmd)
                 
     def pathCmd(self, seqORmov):
-        pathDialog = QtGui.QFileDialog(parent = self, directory = "C:\\")
+        pathDialog = QtGui.QFileDialog(parent = self)
         
         if seqORmov == 'seq':
             pathDialog.setAcceptMode(0)
@@ -113,7 +113,9 @@ class Seq2MovWnd(QtGui.QMainWindow, Ui_Seq2MovWin):
     def setProgressCmd(self, value):
         self.progressBar.setValue(value)
         if value >= 100:
-            self.progressBar.setStyleSheet(XPROGRESS_COMPLETED_STYLE)                
+            self.progressBar.setStyleSheet(XPROGRESS_COMPLETED_STYLE)
+        else :
+            self.progressBar.setStyleSheet(XPROGRESS_DEFAULT_STYLE)          
             
 if __name__ == "__main__":
     app = QtGui.QApplication(sys.argv)

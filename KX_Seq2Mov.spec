@@ -14,7 +14,7 @@ exe = EXE(pyz,
           debug=False,
           strip=None,
           upx=True,
-          console=False , icon='E:\\Scripts\\Eclipse\\Seq2Mov\\KX_Seq2Mov.ico')
+          console=False , icon='E:\\Scripts\\Eclipse\\Seq2Mov\\TenQing.ico')
 coll = COLLECT(exe,
                a.binaries,
                a.zipfiles,

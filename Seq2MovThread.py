@@ -91,6 +91,6 @@ def parseCmd(path):
 def convertCmd(source, destPath):
     sourceFile = os.path.basename(source)
     sourceName, ext = os.path.splitext(sourceFile)
-    destFile = u"{0}.mov".format(sourceName.split(".")[0])
+    destFile = u"{0}.mov".format(os.path.splitext(sourceName)[0])
     dest = os.path.join(destPath, destFile)
     return co.convertCmd.format(co.ffmpegPath, source, dest)
