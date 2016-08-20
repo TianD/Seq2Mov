@@ -1,9 +1,0 @@
-(u'E:\\Scripts\\Eclipse\\Seq2Mov\\build\\KX_Seq2Mov\\\u817e\u6e05\u5e8f\u5217\u8f6cmov\u5de5\u5177.exe',
- False,
- False,
- 'E:\\Scripts\\Eclipse\\Seq2Mov\\TenQing.ico',
- None,
- [],
- None,
- False,
- 1464072853L)

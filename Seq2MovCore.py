@@ -20,7 +20,7 @@ import os, os.path
 ffmpegPath = os.path.join(os.path.dirname(__file__), 'ffmpeg.exe')
 #sourse = 'E:\ffmpeg\eq001\sq002\sc009\c001\XFTL_001_002_009_cp_c001.10%02d.tga'
 #convertCmd = 'xcopy {0} {1} /e /y \r\n'
-convertCmd = '{0} -y -probesize 5000000 -f image2 -r 25 -i {1} -maxrate 7350000 -sc_threshold 1000000000 -qblur 0.3 -qcomp 0.7 -b:v 2.14748e+009 -c:v prores_ks -vendor apl0 -bits_per_mb 8192 -quant_mat 4 -profile:v 3 -pix_fmt:v yuva444p10le {2}\r\n'
+convertCmd = '{0} -y -probesize 5000000 -f image2 -r {3} -i {1} -maxrate 7350000 -sc_threshold 1000000000 -qblur 0.3 -qcomp 0.7 -b:v 2.14748e+009 -c:v prores_ks -vendor apl0 -bits_per_mb 8192 -quant_mat 4 -profile:v 3 -pix_fmt:v yuva444p10le {2}\r\n'
 #convertCmd = '{0} -y -probesize 5000000 -f image2 -r 25 -i {1} -maxrate 7350000 -sc_threshold 1000000000 -qblur 0.3 -qcomp 0.7 -b:v 2.14748e+009 -c:v prores_ks -vendor apl0 -bits_per_mb 8192 -quant_mat 4 -profile:v 4 -pix_fmt:v yuva444p10le {2}\r\n'
 
 class SequenceFileDetection(object):
@@ -271,7 +271,7 @@ def projFFmpeg(files=[], mode=1):
                 break
     return fileName
 
-def convert(paths, dest, batName, batPath):
+def convert(paths, dest, batName, batPath, fps):
     if not os.path.exists(paths):
         return False
     
@@ -304,7 +304,7 @@ def convert(paths, dest, batName, batPath):
                     destName = destName.replace(tempList[0], 'cp', 1)
                 destName += '.mov'
                 destName = dest + '\\' + destName
-                f.write(convertCmd.format(ffmpegPath, sourse, destName))
+                f.write(convertCmd.format(ffmpegPath, sourse, destName, fps))
             else:
                 badFilePath.append(root)
     if badFilePath:

@@ -62,6 +62,13 @@ class Seq2MovWnd(QtGui.QMainWindow, Ui_Seq2MovWin):
         self.progressBar.setStyleSheet(XPROGRESS_DEFAULT_STYLE)
         ###
         
+        #
+        self.splitter = QtGui.QSplitter(self)
+        self.splitter.addWidget(self.rightFrame)
+        self.splitter.addWidget(self.errorFrame)
+        self.viewHorizontalLayout.addWidget(self.splitter)
+        #
+        
         self.seqBtn.clicked.connect(partial(self.pathCmd, 'seq'))
         self.movBtn.clicked.connect(partial(self.pathCmd, 'mov'))
         self.runBtn.clicked.connect(self.runCmd)
@@ -86,12 +93,10 @@ class Seq2MovWnd(QtGui.QMainWindow, Ui_Seq2MovWin):
     
     def loadCmd(self):
         self.loadThread = s2mThread.LoadWorker()
-        
         seqPath = u"{0}".format(self.seqLineEdit.text())
-        exceptStr = u"{0}".format(self.exceptLineEdit.text())
-        exceptLst = exceptStr.split(',')
+        
         self.loadThread.fileSignal.connect(self.fileParseCmd)
-        self.loadThread.start(seqPath, exceptLst)
+        self.loadThread.start(seqPath)
     
     def fileParseCmd(self, right, bad):
         rightModel = QtGui.QStringListModel(right, self.rightListView)
@@ -104,11 +109,11 @@ class Seq2MovWnd(QtGui.QMainWindow, Ui_Seq2MovWin):
         self.subThread = s2mThread.ConvertWorker()
         
         movPath = u"{0}".format(self.movLineEdit.text())
-
+        fpsStr = u"{0}".format(self.fpsComboBox.currentText())
         seqModel = self.rightListView.model()
         seqList = seqModel.stringList()
         self.subThread.progressSignal.connect(self.setProgressCmd)
-        self.subThread.start(seqList, movPath)
+        self.subThread.start(seqList, movPath, fpsStr)
     
     def setProgressCmd(self, value):
         self.progressBar.setValue(value)

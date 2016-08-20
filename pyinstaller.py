@@ -17,7 +17,7 @@ Created on 2015年8月8日 下午2:35:42
 #
 # The full license is in the file COPYING.txt, distributed with this software.
 #-----------------------------------------------------------------------------
-"""
+"""    
 Main command-line interface to PyInstaller.
 """
 # from  PyInstaller import  *

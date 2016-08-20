@@ -28,12 +28,13 @@ class ConvertWorker(QtCore.QThread):
         self.working = False
         self.wait()
             
-    def start(self, lst, path):
+    def start(self, lst, path, fps):
         super(ConvertWorker, self).start()
         self.working = True
         self.lst = lst
         self.path = path
         self.length = len(self.lst)
+        self.fps = fps
     
     def run(self):
         while self.working :
@@ -41,7 +42,7 @@ class ConvertWorker(QtCore.QThread):
                 pathStr = u"{0}".format(self.lst[i])
                 percent = float(i)/self.length*100
                 self.progressSignal.emit(percent)
-                os.system(convertCmd(pathStr, self.path))
+                os.system(convertCmd(pathStr, self.path, self.fps))
             self.working = False
             self.progressSignal.emit(100)
             
@@ -56,7 +57,7 @@ class LoadWorker(QtCore.QThread):
         self.working = False
         self.wait()
             
-    def start(self, path, lst):
+    def start(self, path):
         super(LoadWorker, self).start()
         self.working = True
         self.path = path
@@ -66,7 +67,7 @@ class LoadWorker(QtCore.QThread):
             right, bad = parseCmd(self.path)
             self.working = False
             self.fileSignal.emit(right, bad)
-
+            
 
 def parseCmd(path):
     right = []
@@ -88,9 +89,9 @@ def parseCmd(path):
     
     return right, bad  
 
-def convertCmd(source, destPath):
+def convertCmd(source, destPath, fps):
     sourceFile = os.path.basename(source)
     sourceName, ext = os.path.splitext(sourceFile)
     destFile = u"{0}.mov".format(os.path.splitext(sourceName)[0])
     dest = os.path.join(destPath, destFile)
-    return co.convertCmd.format(co.ffmpegPath, source, dest)
+    return co.convertCmd.format(co.ffmpegPath, source, dest, fps)
